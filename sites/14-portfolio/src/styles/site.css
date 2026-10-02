@@ -312,41 +312,6 @@ a.btn:hover {
   margin-top: var(--space-sm);
 }
 
-/* Testimonials */
-.quotes {
-  display: grid;
-  gap: var(--space-sm);
-  margin-top: var(--space-xl);
-  padding: 0;
-  text-align: start;
-}
-
-.quote {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: var(--space-xl);
-  padding: var(--space-xl) var(--space-lg) var(--space-lg);
-  border-radius: var(--radius-card);
-  background: var(--color-surface);
-  font-size: var(--text-6);
-  font-weight: 500;
-  line-height: 1.25;
-}
-
-.quote__by {
-  display: grid;
-  font-size: var(--text-sm);
-  font-weight: 400;
-}
-
-.stat {
-  max-width: 24ch;
-  margin: var(--space-xl) auto 0;
-  font-size: var(--text-7);
-  font-weight: 500;
-}
-
 /* Clients */
 .clients ul {
   display: flex;
@@ -598,14 +563,6 @@ a.btn:hover {
 
   .hero {
     padding-block: var(--space-2xl);
-  }
-
-  .quotes {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .quote {
-    min-height: 18rem;
   }
 
   .plans {

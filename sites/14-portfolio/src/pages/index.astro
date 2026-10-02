@@ -10,9 +10,7 @@ import content from '../content/site.json';
 const thumbs = import.meta.glob<{ default: ImageMetadata }>('../assets/thumbs/*.jpg', { eager: true });
 const thumb = (slug: string) => thumbs[`../assets/thumbs/${slug}.jpg`].default;
 
-const { hero, work, testimonials, pricing, book, services, ask, footer } = content;
-// Links still marked [TODO] render as plain text until the real target is known.
-const isTodo = (href: string) => href.includes('[TODO]');
+const { hero, work, pricing, book, services, ask, footer } = content;
 const askHref = (base: string) => base + encodeURIComponent(ask.query);
 const clients = work.projects.map((p) => p.name);
 ---
@@ -33,9 +31,7 @@ const clients = work.projects.map((p) => p.name);
         {content.nav.map((l) => <a href={l.href}>{l.label}</a>)}
       </nav>
       <div class="hdr__ctas">
-        {isTodo(content.chat.href)
-          ? <span class="btn btn--ghost"><span class="dot" aria-hidden="true"></span>{content.chat.label} {content.chat.href}</span>
-          : <a class="btn btn--ghost" href={content.chat.href}><span class="dot" aria-hidden="true"></span>{content.chat.label}</a>}
+        <a class="btn btn--ghost" href={content.chat.href}><span class="dot" aria-hidden="true"></span>{content.chat.label}</a>
         <a class="btn btn--primary" href={content.bookCta.href}>{content.bookCta.label}</a>
         <button class="hdr__toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu" data-toggle>
           <span></span><span></span>
@@ -92,19 +88,6 @@ const clients = work.projects.map((p) => p.name);
     ))}
   </section>
 
-  <section id="depoimentos" class="section" aria-labelledby="t-title">
-    <h2 id="t-title" class="h2">{testimonials.title}</h2>
-    <ul class="quotes" role="list">
-      {testimonials.items.map((t) => (
-        <li class="quote">
-          <blockquote>{t.quote}</blockquote>
-          <p class="quote__by"><span>{t.name}</span><span class="muted">{t.role}</span></p>
-        </li>
-      ))}
-    </ul>
-    <p class="stat">{testimonials.stat}</p>
-  </section>
-
   <section class="clients" aria-label="Clientes">
     <ul role="list">
       {clients.map((c) => <li>{c}</li>)}
@@ -138,7 +121,7 @@ const clients = work.projects.map((p) => p.name);
             <span class="muted plan__suffix">{plan.suffix}</span>
           </p>
           <div class="plan__ctas">
-            <span class="btn btn--ghost">{content.chat.label} {content.chat.href}</span>
+            <a class="btn btn--ghost" href={content.chat.href}>{content.chat.label}</a>
             <a class="btn btn--primary" href={content.bookCta.href}>{content.bookCta.label}</a>
           </div>
         </article>
@@ -184,11 +167,11 @@ const clients = work.projects.map((p) => p.name);
       <div class="ftr__col">
         <p>{footer.company}</p>
         <p class="muted">{footer.city}</p>
-        <p>{footer.email}</p>
+        <p><a href={`mailto:${footer.email}`}>{footer.email}</a></p>
       </div>
       <div class="ftr__col">
         <p class="muted">{footer.socialsLabel}</p>
-        {footer.socials.map((s) => <p>{s.label}</p>)}
+        {footer.socials.map((s) => <p><a href="#">{s.label}</a></p>)}
       </div>
     </div>
   </footer>
