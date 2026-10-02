@@ -1,0 +1,245 @@
+---
+import '../styles/tokens.css';
+import '../styles/site.css';
+import BaseLayout from '../../../../shared/components/BaseLayout.astro';
+import Img from '../../../../shared/components/Img.astro';
+import type { ImageMetadata } from 'astro';
+import content from '../content/site.json';
+
+// Thumbnails come from docs/screenshots, optimized into src/assets/thumbs (one per site 01-13).
+const thumbs = import.meta.glob<{ default: ImageMetadata }>('../assets/thumbs/*.jpg', { eager: true });
+const thumb = (slug: string) => thumbs[`../assets/thumbs/${slug}.jpg`].default;
+
+const { hero, work, testimonials, pricing, book, services, ask, footer } = content;
+// Links still marked [TODO] render as plain text until the real target is known.
+const isTodo = (href: string) => href.includes('[TODO]');
+const askHref = (base: string) => base + encodeURIComponent(ask.query);
+const clients = work.projects.map((p) => p.name);
+---
+
+<BaseLayout title={content.seo.title} description={content.seo.description}>
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Non-blocking web font (display=swap); fallback stack renders first. -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap" /></noscript>
+  </Fragment>
+
+  <header slot="header" class="hdr" data-hdr>
+    <div class="hdr__bar">
+      <a class="hdr__logo" href="/">{content.brand}</a>
+      <nav class="hdr__nav" aria-label="Principal">
+        {content.nav.map((l) => <a href={l.href}>{l.label}</a>)}
+      </nav>
+      <div class="hdr__ctas">
+        {isTodo(content.chat.href)
+          ? <span class="btn btn--ghost"><span class="dot" aria-hidden="true"></span>{content.chat.label} {content.chat.href}</span>
+          : <a class="btn btn--ghost" href={content.chat.href}><span class="dot" aria-hidden="true"></span>{content.chat.label}</a>}
+        <a class="btn btn--primary" href={content.bookCta.href}>{content.bookCta.label}</a>
+        <button class="hdr__toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu" data-toggle>
+          <span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <nav class="hdr__menu" id="menu" aria-label="Menu" hidden>
+      {content.nav.map((l) => <a href={l.href}>{l.label}</a>)}
+    </nav>
+  </header>
+
+  <section class="hero">
+    <p class="pill">{hero.eyebrow}</p>
+    <h1 class="hero__title">{hero.title}</h1>
+    <p class="hero__text">{hero.text}</p>
+    <div class="hero__person">
+      <span class="hero__avatar" aria-hidden="true"></span>
+      <p>{hero.person}<br />{hero.role}</p>
+    </div>
+  </section>
+
+  <section id="trabalhos" class="work" aria-labelledby="work-label">
+    <div class="work__bar">
+      <h2 id="work-label" class="work__label sr-only">{work.label}</h2>
+      <div class="work__tabs" role="tablist" aria-labelledby="work-label">
+        {work.projects.map((p, i) => (
+          <button
+            class="tab"
+            type="button"
+            role="tab"
+            id={`tab-${p.slug}`}
+            aria-controls={`panel-${p.slug}`}
+            aria-selected={i === 0 ? 'true' : 'false'}
+            tabindex={i === 0 ? 0 : -1}
+          >{p.name}</button>
+        ))}
+      </div>
+    </div>
+    {work.projects.map((p, i) => (
+      <div class="case" id={`panel-${p.slug}`} role="tabpanel" aria-labelledby={`tab-${p.slug}`} data-panel>
+        <a class="case__media" href={p.url} target="_blank" rel="noopener noreferrer">
+          <Img src={thumb(p.slug)} alt={`Página inicial do site ${p.name}`} sizes="(min-width: 1088px) 1024px, 100vw" priority={i === 0} />
+        </a>
+        <div class="case__meta">
+          <div>
+            <h3 class="case__name">{p.name}</h3>
+            <p class="case__niche">{p.niche}</p>
+          </div>
+          <a class="btn btn--light" href={p.url} target="_blank" rel="noopener noreferrer">
+            {work.linkLabel}<span class="sr-only"> {p.name} (abre em nova aba)</span>
+          </a>
+        </div>
+      </div>
+    ))}
+  </section>
+
+  <section id="depoimentos" class="section" aria-labelledby="t-title">
+    <h2 id="t-title" class="h2">{testimonials.title}</h2>
+    <ul class="quotes" role="list">
+      {testimonials.items.map((t) => (
+        <li class="quote">
+          <blockquote>{t.quote}</blockquote>
+          <p class="quote__by"><span>{t.name}</span><span class="muted">{t.role}</span></p>
+        </li>
+      ))}
+    </ul>
+    <p class="stat">{testimonials.stat}</p>
+  </section>
+
+  <section class="clients" aria-label="Clientes">
+    <ul role="list">
+      {clients.map((c) => <li>{c}</li>)}
+    </ul>
+  </section>
+
+  <section id="precos" class="section" aria-labelledby="p-title">
+    <h2 id="p-title" class="h2">{pricing.title}</h2>
+    <p class="section__lead muted">{pricing.text}</p>
+    <div class="plans">
+      {pricing.plans.map((plan) => (
+        <article class="plan">
+          <div class="plan__head">
+            <h3>{plan.title}</h3>
+            {plan.periods && (
+              <div class="toggle" role="group" aria-label="Período">
+                {plan.periods.map((p, j) => (
+                  <button type="button" class="toggle__btn" aria-pressed={j === 0 ? 'true' : 'false'} data-period={j}>{p.label}</button>
+                ))}
+              </div>
+            )}
+          </div>
+          <p class="muted">{plan.text}</p>
+          <ul class="plan__list" role="list">
+            {plan.bullets.map((b) => <li>{b}</li>)}
+          </ul>
+          <p class="plan__price" aria-live="polite">
+            {plan.periods
+              ? plan.periods.map((p, j) => <span data-price={j} hidden={j !== 0}>{p.price}</span>)
+              : <span>{plan.price}</span>}
+            <span class="muted plan__suffix">{plan.suffix}</span>
+          </p>
+          <div class="plan__ctas">
+            <span class="btn btn--ghost">{content.chat.label} {content.chat.href}</span>
+            <a class="btn btn--primary" href={content.bookCta.href}>{content.bookCta.label}</a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section id="agendar" class="section book" aria-labelledby="b-title">
+    <h2 id="b-title" class="h2">{book.title}</h2>
+    <p class="muted">{book.text}</p>
+    <div class="book__embed">{book.cta}</div>
+  </section>
+
+  <section id="servicos" class="section" aria-labelledby="s-title">
+    <h2 id="s-title" class="h2">{services.title}</h2>
+    <div class="services">
+      {services.items.map((s) => (
+        <details class="service">
+          <summary><h3>{s.title}</h3><span class="service__icon" aria-hidden="true"></span></summary>
+          <ul role="list">
+            {s.bullets.map((b) => <li>{b}</li>)}
+          </ul>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <section class="ask" aria-label={ask.label}>
+    <p class="muted">{ask.label}</p>
+    <ul role="list">
+      {ask.links.map((l) => (
+        <li><a href={askHref(l.base)} target="_blank" rel="noopener noreferrer">{l.name}<span class="sr-only"> (abre em nova aba)</span></a></li>
+      ))}
+    </ul>
+  </section>
+
+  <footer slot="footer" class="ftr">
+    <div class="ftr__inner">
+      <div class="ftr__brand">
+        <p class="hdr__logo">{content.brand}</p>
+        <p class="muted">{footer.tagline}</p>
+      </div>
+      <div class="ftr__col">
+        <p>{footer.company}</p>
+        <p class="muted">{footer.city}</p>
+        <p>{footer.email}</p>
+      </div>
+      <div class="ftr__col">
+        <p class="muted">{footer.socialsLabel}</p>
+        {footer.socials.map((s) => <p>{s.label}</p>)}
+      </div>
+    </div>
+  </footer>
+</BaseLayout>
+
+<script>
+  // Header: floating pill after scroll (RP behavior) + mobile menu toggle.
+  const hdr = document.querySelector<HTMLElement>('[data-hdr]')!;
+  const onScroll = () => hdr.classList.toggle('is-scrolled', window.scrollY > 40);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  const toggle = hdr.querySelector<HTMLButtonElement>('[data-toggle]')!;
+  const menu = document.getElementById('menu')!;
+  const setMenu = (open: boolean) => {
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+    menu.hidden = !open;
+  };
+  toggle.addEventListener('click', () => setMenu(menu.hidden === true));
+  menu.addEventListener('click', (e) => { if ((e.target as Element).closest('a')) setMenu(false); });
+
+  // Featured work tabs (WAI-ARIA tabs pattern). Without JS every case stays visible.
+  const tabs = [...document.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+  const panels = [...document.querySelectorAll<HTMLElement>('[data-panel]')];
+  const select = (i: number, focus = false) => {
+    tabs.forEach((t, j) => {
+      t.setAttribute('aria-selected', String(i === j));
+      t.tabIndex = i === j ? 0 : -1;
+      panels[j].hidden = i !== j;
+    });
+    tabs[i].scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    if (focus) tabs[i].focus();
+  };
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => select(i));
+    t.addEventListener('keydown', (e) => {
+      const keys: Record<string, number> = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 };
+      if (!(e.key in keys)) return;
+      e.preventDefault();
+      select((keys[e.key] + tabs.length) % tabs.length, true);
+    });
+  });
+  panels.forEach((p, j) => (p.hidden = j !== 0));
+
+  // Pricing period toggle.
+  document.querySelectorAll<HTMLElement>('.plan').forEach((plan) => {
+    const btns = plan.querySelectorAll<HTMLButtonElement>('[data-period]');
+    btns.forEach((b) => b.addEventListener('click', () => {
+      btns.forEach((o) => o.setAttribute('aria-pressed', String(o === b)));
+      plan.querySelectorAll<HTMLElement>('[data-price]').forEach((p) => (p.hidden = p.dataset.price !== b.dataset.period));
+    }));
+  });
+</script>

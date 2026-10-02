@@ -1,0 +1,115 @@
+{
+  "seo": {
+    "title": "Koda — [TODO] descrição curta",
+    "description": "[TODO] Descrição da Koda."
+  },
+  "brand": "Koda",
+  "nav": [
+    { "label": "Trabalhos", "href": "#trabalhos" },
+    { "label": "Depoimentos", "href": "#depoimentos" },
+    { "label": "Preços", "href": "#precos" },
+    { "label": "Serviços", "href": "#servicos" }
+  ],
+  "chat": { "label": "Chat", "href": "[TODO]" },
+  "bookCta": { "label": "Agendar conversa", "href": "#agendar" },
+  "hero": {
+    "eyebrow": "[TODO] Tipo de estúdio",
+    "title": "[TODO] Título da Koda",
+    "text": "[TODO] Descrição da Koda: desde quando atua e com quem trabalhou.",
+    "person": "[TODO] Nome",
+    "role": "[TODO] Cargo"
+  },
+  "work": {
+    "label": "Trabalhos em destaque",
+    "linkLabel": "Ver site",
+    "projects": [
+      { "slug": "01-dental-clinic", "name": "Sorriso Ateliê Odontologia", "niche": "Clínica de Odontologia", "url": "https://sorriso-atelie-odontologia.vercel.app" },
+      { "slug": "02-hair-stylist", "name": "Casa Aurora Cabelos", "niche": "Cabeleireiro", "url": "https://casa-aurora-cabelos.vercel.app" },
+      { "slug": "03-salon", "name": "Salão Lumina", "niche": "Salão", "url": "https://salao-lumina.vercel.app" },
+      { "slug": "04-food-beverage-company", "name": "Cervejaria Serra Alta", "niche": "Empresa de Alimentação e Bebidas", "url": "https://cervejaria-serra-alta.vercel.app" },
+      { "slug": "05-education", "name": "Ponte Educação", "niche": "Atividades de Ensino", "url": "https://ponte-educacao.vercel.app" },
+      { "slug": "06-fashion-retail", "name": "Ateliê Garoa", "niche": "Varejista de Vestuário e Acessórios", "url": "https://atelie-garoa.vercel.app" },
+      { "slug": "07-freelancers", "name": "Faro Estúdio", "niche": "Profissionais autônomos", "url": "https://faro-estudio-six.vercel.app" },
+      { "slug": "08-architects", "name": "Traço Norte Arquitetura", "niche": "Arquitetos", "url": "https://traco-norte-arquitetura.vercel.app" },
+      { "slug": "09-restaurant", "name": "Restaurante Quintal da Serra", "niche": "Restaurante", "url": "https://restaurante-quintal-da-serra.vercel.app" },
+      { "slug": "10-burger-joint", "name": "Brasa Smash Hamburgueria", "niche": "Hamburgueria", "url": "https://brasa-smash-hamburgueria.vercel.app" },
+      { "slug": "11-product-system", "name": "Fluxo Gestão", "niche": "Sistema de produtos", "url": "https://fluxo-gestao-xi.vercel.app" },
+      { "slug": "12-online-menu", "name": "Cardápio Mandacaru", "niche": "Cardápio Online", "url": "https://cardapio-mandacaru.vercel.app" },
+      { "slug": "13-real-estate", "name": "Alicerce Imóveis", "niche": "Imobiliária", "url": "https://alicerce-imoveis.vercel.app" }
+    ]
+  },
+  "testimonials": {
+    "title": "[TODO] Título dos depoimentos",
+    "items": [
+      { "quote": "[TODO] Depoimento.", "name": "[TODO] Nome", "role": "[TODO] Cargo, empresa" },
+      { "quote": "[TODO] Depoimento.", "name": "[TODO] Nome", "role": "[TODO] Cargo, empresa" },
+      { "quote": "[TODO] Depoimento.", "name": "[TODO] Nome", "role": "[TODO] Cargo, empresa" },
+      { "quote": "[TODO] Depoimento.", "name": "[TODO] Nome", "role": "[TODO] Cargo, empresa" },
+      { "quote": "[TODO] Depoimento.", "name": "[TODO] Nome", "role": "[TODO] Cargo, empresa" },
+      { "quote": "[TODO] Depoimento.", "name": "[TODO] Nome", "role": "[TODO] Cargo, empresa" }
+    ],
+    "stat": "[TODO] Resultado obtido pelos clientes da Koda."
+  },
+  "pricing": {
+    "title": "Preços",
+    "text": "[TODO] Frase sobre os preços.",
+    "plans": [
+      {
+        "title": "[TODO] Projeto único",
+        "text": "[TODO] Descrição do plano.",
+        "bullets": ["[TODO]", "[TODO]", "[TODO]"],
+        "price": "[TODO]",
+        "suffix": "A partir de"
+      },
+      {
+        "title": "[TODO] Plano mensal",
+        "text": "[TODO] Descrição do plano.",
+        "bullets": ["[TODO]", "[TODO]", "[TODO]", "[TODO]", "[TODO]", "[TODO]"],
+        "periods": [
+          { "label": "Mensal", "price": "[TODO]" },
+          { "label": "6 meses", "price": "[TODO]" }
+        ],
+        "suffix": "/mês"
+      }
+    ]
+  },
+  "book": {
+    "title": "Agende uma conversa",
+    "text": "[TODO] Convite para a conversa.",
+    "cta": "[TODO] Link de agendamento"
+  },
+  "services": {
+    "title": "Serviços",
+    "items": [
+      { "title": "[TODO] Serviço 1", "bullets": ["[TODO]", "[TODO]", "[TODO]", "[TODO]"] },
+      { "title": "[TODO] Serviço 2", "bullets": ["[TODO]", "[TODO]", "[TODO]", "[TODO]"] },
+      { "title": "[TODO] Serviço 3", "bullets": ["[TODO]", "[TODO]", "[TODO]", "[TODO]"] },
+      { "title": "[TODO] Serviço 4", "bullets": ["[TODO]", "[TODO]", "[TODO]", "[TODO]"] },
+      { "title": "[TODO] Serviço 5", "bullets": ["[TODO]", "[TODO]", "[TODO]", "[TODO]"] },
+      { "title": "[TODO] Serviço 6", "bullets": ["[TODO]", "[TODO]", "[TODO]", "[TODO]"] },
+      { "title": "[TODO] Serviço 7", "bullets": ["[TODO]", "[TODO]", "[TODO]", "[TODO]"] }
+    ]
+  },
+  "ask": {
+    "label": "Pergunte sobre a Koda no",
+    "query": "O que a Koda faz?",
+    "links": [
+      { "name": "Claude", "base": "https://claude.ai/new?q=" },
+      { "name": "ChatGPT", "base": "https://chatgpt.com/?q=" },
+      { "name": "Perplexity", "base": "https://www.perplexity.ai/search?q=" },
+      { "name": "Gemini", "base": "https://www.google.com/search?udm=50&q=" },
+      { "name": "Grok", "base": "https://grok.com/?q=" }
+    ]
+  },
+  "footer": {
+    "tagline": "[TODO] Frase da Koda.",
+    "company": "[TODO] Razão social",
+    "city": "[TODO] Cidade, Estado",
+    "email": "[TODO] E-mail",
+    "socialsLabel": "Redes",
+    "socials": [
+      { "label": "LinkedIn [TODO]" },
+      { "label": "X [TODO]" }
+    ]
+  }
+}

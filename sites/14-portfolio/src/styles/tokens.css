@@ -1,0 +1,51 @@
+/* Site tokens: Koda palette from shared/tokens (docs/changes/14-portfolio.md); type, greys, radii and spacing
+   measured on the live reference RP (newarc.io) at 1440px. The live RP uses Geist, not the fonts in docs/specs/RP.md. */
+@import '../../../../shared/tokens/14-portfolio.css';
+
+:root {
+  --color-bg: var(--color-primary);
+  --color-surface: #2a2a2a;
+  --color-surface-2: #353535;
+  --color-text: #f2f2f2;
+  --color-muted: #a3a3a3; /* RP grey #7c7c7c lightened to reach 4.5:1 on the Koda black */
+  --color-border: #3a3a3a;
+  --color-on-primary: var(--color-white);
+  --color-focus: #7ea2ff;
+
+  --font-body: "Geist", system-ui, sans-serif;
+  --font-heading: var(--font-body);
+  --text-sm: var(--text-3);
+  --text-base: var(--text-4);
+  --text-h2: clamp(2rem, 1.6rem + 1.6vw, 2.5rem);
+  --text-h1: clamp(3rem, 1.4rem + 6.4vw, 7rem);
+  --leading-body: 1.5;
+  --leading-heading: 1;
+  --tracking-h1: -0.06em;
+  --tracking-h2: -0.06em;
+  --tracking-body: -0.02em;
+
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 3rem;
+  --space-2xl: 5rem;
+  --space-gutter: 0.75rem;
+  --container-max: 64rem;
+  --container-narrow: 30rem;
+  --header-height: 3.5rem;
+
+  --border-width: 1px;
+  --radius-button: 10px;
+  --radius-card: 1rem;
+  --radius-media: 1.5rem;
+  --radius-input: 6px;
+  --focus-width: 2px;
+  --focus-offset: 2px;
+
+  --duration-fast: 150ms;
+  --duration-slow: 400ms;
+  --opacity-hover: 0.85;
+  --z-header: 10;
+  --z-skip: 20;
+}
